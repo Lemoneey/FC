@@ -11,7 +11,7 @@ export class PlayersService {
         private readonly playersRepository: Repository<PlayerEntity>
     ) {}
 
-    async savePlayer(dto: PlayerSaveDto) {
+    async registerPlayer(dto: PlayerSaveDto) {
         const player = await this.playersRepository.findOne({
             where: [{ name: dto.name }]
         });

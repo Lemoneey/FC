@@ -5,6 +5,7 @@ import {
     HttpStatus,
     Post
 } from '@nestjs/common';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { PlayerSaveDto } from './dto/player_save.dto';
 import { PlayersService } from './players.service';
 
@@ -13,19 +14,21 @@ export class PlayersController {
     constructor(private playersService: PlayersService) {}
 
     @Post()
-    async savePlayer(@Body() playerSaveDot: PlayerSaveDto) {
-        const isPlayerCreated = await this.playersService.savePlayer(
+    @ApiOperation({ summary: 'Создание игры' })
+    @ApiResponse({ status: 200, type: 'Player is successfully created' })
+    async registerPlayerToGame(@Body() playerSaveDot: PlayerSaveDto) {
+        const isPlayerCreated = await this.playersService.registerPlayer(
             playerSaveDot
         );
 
         if (!isPlayerCreated) {
             throw new HttpException(
-                'Player with this name already exists',
+                'Player with this name already registered for the game',
                 HttpStatus.OK
             );
         } else {
             throw new HttpException(
-                'Player with this name created',
+                'Player with this name registered',
                 HttpStatus.OK
             );
         }
