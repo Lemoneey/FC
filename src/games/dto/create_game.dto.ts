@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate } from 'class-validator';
+import { IsDateString } from 'class-validator';
 
 export class CreateGameDto {
     @ApiProperty({ required: true })
-    @IsDate()
+    @IsDateString()
     date: Date;
 }
