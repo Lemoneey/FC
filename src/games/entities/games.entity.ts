@@ -5,6 +5,6 @@ export class GameEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     started_at: Date;
 }

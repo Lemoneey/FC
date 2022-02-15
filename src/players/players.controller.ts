@@ -5,10 +5,11 @@ import {
     HttpStatus,
     Post
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PlayerSaveDto } from './dto/player_save.dto';
 import { PlayersService } from './players.service';
 
+@ApiTags('Players')
 @Controller('players')
 export class PlayersController {
     constructor(private playersService: PlayersService) {}
